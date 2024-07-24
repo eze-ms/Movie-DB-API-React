@@ -27,3 +27,18 @@ export const MovieAPIResponse = z.object({
 export const MoviesAPIResponse = z.object({
   results: z.array(MovieAPIResponse)
 })
+
+// Esquema para validar la respuesta de los detalles de una película
+export const MovieAPIResponseSchema = z.object({
+  backdrop_path: z.string().nullable(),
+  id: z.number(),
+  title: z.string(),
+  genres: z.array(z.object({
+    id: z.number(),
+    name: z.string()
+  })),
+  release_date: z.string(),
+  vote_average: z.number(),
+  overview: z.string(),
+  poster_path: z.string().nullable(),
+});

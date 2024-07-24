@@ -1,10 +1,14 @@
-import type { Movie } from "../types";
+import type { Movie } from "../types"
+import { useAppStore } from "../stores/useAppStore"
 
 type MovieCardProps = {
-    movie: Movie;
+    movie: Movie
 };
 
 export default function MovieCard({ movie }: MovieCardProps) {
+
+  const selectMovie = useAppStore((state) => state.selectMovie)
+
   const imageUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : 'https://via.placeholder.com/500x750?text=No+Image';
@@ -23,6 +27,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <button
           type="button"
           className="bg-primary-orange hover:bg-orange-800 w-full mt-3 p-2 font-light text-white text-sm rounded-sm uppercase"
+          onClick={() => selectMovie(movie.id)}
         >
           Información
         </button>
