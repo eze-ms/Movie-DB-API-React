@@ -8,7 +8,7 @@ export default function IndexPage() {
   const hasMovies = useMemo(() => movies?.results?.length > 0, [movies])
 
   return (
-    <> 
+    <div> 
       <h1 className="text-white text-6xl font-bold">Películas</h1>
 
       {hasMovies ? (
@@ -23,7 +23,7 @@ export default function IndexPage() {
       ) : (
         <p className="my-10 text-center text-2xl text-white">No hay resultados</p>
       )}
-    </>
+    </div>
   )
 }
 
