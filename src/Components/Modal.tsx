@@ -109,7 +109,10 @@ export default function Modal() {
                                         <button
                                             type='button'
                                             className='w-1/3 mx-2 rounded bg-custom-hover p-2 font-medium uppercase text-white shadow hover:bg-orange-400'
-                                            onClick={() => handleClickFavorite(selectedMovie)}
+                                            onClick={() => {
+                                                handleClickFavorite(selectedMovie)
+                                                closeModal()
+                                            }}
                                         >
                                             {favoriteExists(selectedMovie.id) ? 'Eliminar Favorito' : 'Agregar a Favoritos'}
                                         </button>
