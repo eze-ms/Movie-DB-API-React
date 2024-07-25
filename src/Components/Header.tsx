@@ -58,7 +58,8 @@ export default function Header() {
     { id: '28', name: 'Acción' },
     { id: '12', name: 'Aventura' },
     { id: '16', name: 'Animación' },
-    { id: '35', name: 'Comedia' }
+    { id: '35', name: 'Comedia' },
+    { id: '10749', name: 'Romance' }
   ];
 
   return (
@@ -72,15 +73,15 @@ export default function Header() {
           </div>
           <form className="md:w-1/2 2xl:w-1/3 text-right" onSubmit={handleSubmit}>
             <div className="space-y-4">
-              <input
-                type="text"
-                id="title"
-                name="title"
-                className="bg-custom-bg p-2 w-1/2 rounded focus:outline-none text-md border text-white"
-                placeholder="Busca por título, reparto, tema..."
-                onChange={handleChange}
-                value={searchFilters.title}
-              />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              className="bg-custom-bg p-2 w-full md:w-1/2 rounded focus:outline-none text-md border text-white"
+              placeholder="Busca por título, reparto, tema..."
+              onChange={handleChange}
+              value={searchFilters.title}
+            />
             </div>
           </form>
 
@@ -106,11 +107,11 @@ export default function Header() {
 
         {isHome && (
           <form className="md:w-1/2 2xl:w-1/2 pt-5" onSubmit={handleSubmit}>
-            <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {mainCategories.map(category => (
                 <input
                   type="button"
-                  className={`uppercase ${searchFilters.category === category.id ? 'bg-custom-hover' : 'bg-custom-button'} hover:bg-custom-hover text-white text-sm font-normal py-3 px-3 rounded`}
+                  className={`uppercase ${searchFilters.category === category.id ? 'bg-custom-hover' : 'bg-custom-button'} hover:bg-custom-hover text-white text-sm font-normal py-2 rounded`}
                   key={category.id}
                   value={category.name}
                   onClick={() => handleCategorySelect(category.id)}
@@ -121,7 +122,7 @@ export default function Header() {
             <input
               type="submit"
               value='Buscar título'
-              className="cursor-pointer bg-primary-orange hover:bg-orange-800 text-white font-medium w-1/3 p-2 rounded uppercase mt-5"
+              className="cursor-pointer bg-primary-orange hover:bg-orange-800 text-white font-medium w-full md:w-1/3 p-2 rounded uppercase mt-5"
             />
           </form>
         )}
