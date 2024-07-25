@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom"
 import Header from "../Components/Header"
 import Modal from "../Components/Modal";
 import { useAppStore } from "../stores/useAppStore";
+import Notification from "../Components/Notification";
 
 export default function Layout() {
 
@@ -20,6 +21,7 @@ export default function Layout() {
             <Outlet />
         </main>
         <Modal />
+        <Notification />
     </>
   );
 }

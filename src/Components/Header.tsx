@@ -1,48 +1,52 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { useAppStore } from "../stores/useAppStore";
-import { SearchFilter } from "../types";
+import { ChangeEvent, useEffect, useMemo, useState } from "react"
+import { NavLink, useLocation } from "react-router-dom"
+import { useAppStore } from "../stores/useAppStore"
+import { SearchFilter } from "../types"
 
 export default function Header() {
   const [searchFilters, setSearchFilters] = useState<SearchFilter>({
     title: '',
     category: ''
-  });
+  })
 
-  const { pathname } = useLocation();
-  const isHome = useMemo(() => pathname === '/', [pathname]);
+  const { pathname } = useLocation()
+  const isHome = useMemo(() => pathname === '/', [pathname])
 
-  const fetchCategories = useAppStore((state) => state.fetchCategories);
-  const searchMovies = useAppStore((state) => state.searchMovies);
+  const fetchCategories = useAppStore((state) => state.fetchCategories)
+  const searchMovies = useAppStore((state) => state.searchMovies)
+  const showNotification = useAppStore((state) => state.showNotification)
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    fetchCategories()
+  }, [])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchFilters({
       ...searchFilters,
       [e.target.name]: e.target.value
-    });
-  };
+    })
+  }
 
   const handleCategorySelect = (category: string) => {
     setSearchFilters({
       ...searchFilters,
       category: category
-    });
-  };
+    })
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (searchFilters.title === '') {
-      console.log('El campo de título es obligatorio...');
-      return;
+      showNotification({
+        text: 'Todos lo campos son obligatorios',
+        error: true
+      })
+      return
     }
 
-    console.log('Filters:', searchFilters);
-    searchMovies(searchFilters);
+    console.log('Filters:', searchFilters)
+    searchMovies(searchFilters)
   };
 
   const mainCategories = [
@@ -51,7 +55,7 @@ export default function Header() {
     { id: '12', name: 'Aventura' },
     { id: '16', name: 'Animación' },
     { id: '35', name: 'Comedia' }
-  ];
+  ]
 
   return (
     <header>
@@ -117,5 +121,5 @@ export default function Header() {
         )}
       </div>
     </header>
-  );
+  )
 }

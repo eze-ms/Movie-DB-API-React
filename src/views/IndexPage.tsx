@@ -4,7 +4,6 @@ import MovieCard from "../Components/MovieCard"
 
 export default function IndexPage() {
   const movies = useAppStore((state) => state.movies)
-
   const hasMovies = useMemo(() => movies?.results?.length > 0, [movies])
 
   return (

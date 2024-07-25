@@ -1,6 +1,7 @@
 import { StateCreator } from "zustand"
 import { getCategories, getMovieById, getMovies } from "../services/MovieService"
 import type { Categories, Info, Movie, Movies, SearchFilter } from "../types"
+import { FavoriteSliceType } from "./favoriteSlice"
 
 // Definición del tipo para el slice
 export type MovieSliceType = {
@@ -14,7 +15,12 @@ export type MovieSliceType = {
   closeModal: () => void
 }
 
-export const createMovieSlice: StateCreator<MovieSliceType> = (set) => ({
+export const createMovieSlice: StateCreator<
+  MovieSliceType & FavoriteSliceType, 
+  [], 
+  [], 
+  MovieSliceType
+> = (set) => ({
   // Inicializa el estado de categorías con un array vacío de géneros
   categories: {
     genres: []
@@ -58,5 +64,4 @@ export const createMovieSlice: StateCreator<MovieSliceType> = (set) => ({
       selectedMovie: {} as Info
     })
   },
-
 })
