@@ -27,32 +27,30 @@ export async function getMovies(filters: SearchFilter) {
         url = `https://api.themoviedb.org/3/discover/movie?api_key=${appId}&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
     }
 
-    // Añadir el filtro de categoría si está presente y no es "Todo"
-    if (filters.category) {
-        url += `&with_genres=${filters.category}`
-    }
-
     console.log('Constructed URL:', url) // Imprimir la URL construida para depuración
 
     const { data } = await axios.get(url)
     const result = MoviesAPIResponse.safeParse(data)
     if(result.success){
-        return result.data
+        let movies = result.data.results;
+        
+        // Filtrar las películas por categoría si está presente y no es "Todo"
+        if (filters.category) {
+            const categoryId = parseInt(filters.category, 10);
+            movies = movies.filter(movie => movie.genre_ids.includes(categoryId));
+        }
+
+        return { ...result.data, results: movies };
     }
 }
 
 // Función para obtener los detalles de la película
-
 export async function getMovieById(id: Movie['id']) {
     const appId = import.meta.env.VITE_API_KEY
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${appId}&language=es-ES`
-    const {data} = await axios(url)
+    const { data } = await axios(url)
     const result = MovieAPIResponseSchema.safeParse(data)
-    if(result.success) {
+    if (result.success) {
         return result.data
     }
-    
-    
-    
-    
 }

@@ -1,52 +1,56 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react"
-import { NavLink, useLocation } from "react-router-dom"
-import { useAppStore } from "../stores/useAppStore"
-import { SearchFilter } from "../types"
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useAppStore } from "../stores/useAppStore";
+import { SearchFilter } from "../types";
 
 export default function Header() {
   const [searchFilters, setSearchFilters] = useState<SearchFilter>({
     title: '',
     category: ''
-  })
+  });
 
-  const { pathname } = useLocation()
-  const isHome = useMemo(() => pathname === '/', [pathname])
+  const { pathname } = useLocation();
+  const isHome = useMemo(() => pathname === '/', [pathname]);
 
-  const fetchCategories = useAppStore((state) => state.fetchCategories)
-  const searchMovies = useAppStore((state) => state.searchMovies)
-  const showNotification = useAppStore((state) => state.showNotification)
+  const fetchCategories = useAppStore((state) => state.fetchCategories);
+  const searchMovies = useAppStore((state) => state.searchMovies);
+  const showNotification = useAppStore((state) => state.showNotification);
 
   useEffect(() => {
-    fetchCategories()
-  }, [])
+    fetchCategories();
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchFilters({
       ...searchFilters,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   const handleCategorySelect = (category: string) => {
     setSearchFilters({
       ...searchFilters,
       category: category
-    })
-  }
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (searchFilters.title === '') {
       showNotification({
-        text: 'Todos lo campos son obligatorios',
+        text: 'Todos los campos son obligatorios',
         error: true
-      })
-      return
+      });
+      return;
     }
+    searchMovies(searchFilters);
 
-    console.log('Filters:', searchFilters)
-    searchMovies(searchFilters)
+     // Limpiar el campo de título
+    setSearchFilters((prevFilters) => ({
+      ...prevFilters,
+      title: ''
+    }));
   };
 
   const mainCategories = [
@@ -55,14 +59,16 @@ export default function Header() {
     { id: '12', name: 'Aventura' },
     { id: '16', name: 'Animación' },
     { id: '35', name: 'Comedia' }
-  ]
+  ];
 
   return (
     <header>
       <div className="mx-auto container px-5 py-16">
         <div className="flex justify-between items-center">
           <div>
-            <img className="w-32" src="/logo_cinema.webp" alt="logo" />
+            <Link to="/">
+              <img className="w-32 cursor-pointer" src="/logo_cinema.webp" alt="logo" />
+            </Link>
           </div>
           <form className="md:w-1/2 2xl:w-1/3 text-right" onSubmit={handleSubmit}>
             <div className="space-y-4">
@@ -104,7 +110,7 @@ export default function Header() {
               {mainCategories.map(category => (
                 <input
                   type="button"
-                  className={`uppercase bg-custom-button hover:bg-custom-hover text-white text-sm font-normal py-3 px-3 rounded ${searchFilters.category === category.id ? 'bg-gray-400' : ''}`}
+                  className={`uppercase ${searchFilters.category === category.id ? 'bg-custom-hover' : 'bg-custom-button'} hover:bg-custom-hover text-white text-sm font-normal py-3 px-3 rounded`}
                   key={category.id}
                   value={category.name}
                   onClick={() => handleCategorySelect(category.id)}
@@ -121,5 +127,5 @@ export default function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }
