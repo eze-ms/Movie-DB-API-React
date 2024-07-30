@@ -46,7 +46,7 @@ export default function Header() {
     }
     searchMovies(searchFilters);
 
-     // Limpiar el campo de título
+    // Limpiar el campo de título
     setSearchFilters((prevFilters) => ({
       ...prevFilters,
       title: ''
@@ -71,17 +71,17 @@ export default function Header() {
               <img className="w-32 cursor-pointer" src="/logo_cinema.webp" alt="logo" />
             </Link>
           </div>
-          <form className="md:w-1/2 2xl:w-1/3 text-right" onSubmit={handleSubmit}>
+          <form className="w-[65%] md:w-[25%] text-right" onSubmit={handleSubmit}>
             <div className="space-y-4">
-            <input
-              type="text"
-              id="title"
-              name="title"
-              className="bg-custom-bg p-2 w-full md:w-1/2 rounded focus:outline-none text-md border text-white"
-              placeholder="Busca por título, reparto, tema..."
-              onChange={handleChange}
-              value={searchFilters.title}
-            />
+              <input
+                type="text"
+                id="title"
+                name="title"
+                className="bg-custom-bg p-2 w-full rounded focus:outline-none text-md border text-white"
+                placeholder="Busca por título, reparto, tema..."
+                onChange={handleChange}
+                value={searchFilters.title}
+              />
             </div>
           </form>
 
