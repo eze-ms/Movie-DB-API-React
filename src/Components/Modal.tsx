@@ -97,10 +97,10 @@ export default function Modal() {
                                         </div>
                                     </div>
                                     
-                                    <div className='mt-5 flex justify-evenly'>
+                                    <div className='mt-5 flex flex-col space-y-4 sm:space-y-0 sm:space-x-4 justify-evenly sm:flex-row'>
                                         <button
                                             type='button'
-                                            className='w-1/3 mx-2 rounded bg-gray-300 p-2 font-medium uppercase text-black shadow hover:bg-gray-400'
+                                            className='w-full sm:w-1/3 text-sm rounded bg-gray-300 p-2 font-medium uppercase text-black shadow hover:bg-gray-400'
                                             onClick={closeModal}
                                         >
                                             Cerrar
@@ -108,15 +108,14 @@ export default function Modal() {
 
                                         <button
                                             type='button'
-                                            className='w-1/3 mx-2 rounded bg-custom-hover p-2 font-medium uppercase text-white shadow hover:bg-orange-400'
+                                            className='w-full sm:w-1/3 text-sm rounded bg-custom-hover p-2 font-medium uppercase text-white shadow hover:bg-orange-400'
                                             onClick={() => {
-                                                handleClickFavorite(selectedMovie)
+                                            handleClickFavorite(selectedMovie)
                                             }}
                                         >
                                             {favoriteExists(selectedMovie.id) ? 'Eliminar Favorito' : 'Agregar a Favoritos'}
                                         </button>
                                     </div>
-
                                 </div>
                                 
                             </DialogPanel>

@@ -17,7 +17,7 @@ export default function Layout() {
     <>
         <Header />
 
-        <main className="container mx-auto py-16">
+        <main className="container mx-auto py-16 px-4">
             <Outlet />
         </main>
         <Modal />
