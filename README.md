@@ -16,7 +16,7 @@
 
 ## 🌐 Demo
 
-🔗 [movie-db-api](https://movie-db-api-react.netlify.app/favoritos)
+🔗 [movie-db-api](https://movie-db-api-react.netlify.app/)
 
 
 ---
