@@ -94,7 +94,7 @@ MovieSearch/
 git clone https://github.com/eze-ms/Movie-DB-API-React
 ```
 
-### Instalar dependencias del backend
+### Instalar dependencias 
 ```bash
 npm install
 ```
