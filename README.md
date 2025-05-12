@@ -1,30 +1,108 @@
-# React + TypeScript + Vite
+# MovieSearch — Buscador de Películas con React + Zustand + Zod
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Status](https://img.shields.io/badge/status-live-success?style=flat-square)
+![React](https://img.shields.io/badge/frontend-React-blue?style=flat-square)
+![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?style=flat-square)
+![State](https://img.shields.io/badge/state-Zustand-yellow?style=flat-square)
+![Styling](https://img.shields.io/badge/styling-TailwindCSS-38bdf8?style=flat-square)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📄 Descripción
 
-## Expanding the ESLint configuration
+**MovieSearch** es una aplicación web desarrollada con **React + TypeScript** que permite buscar películas a través de una API pública. Implementa una arquitectura modular basada en componentes funcionales, middleware para controlar solicitudes, validaciones robustas con **Zod** y un estado global manejado con **Zustand**. Ofrece una interfaz moderna, eficiente y totalmente responsive.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🌐 Demo
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+🔗 [movie-db-api](https://movie-db-api-react.netlify.app/favoritos)
+
+
+---
+
+## 🖼️ Capturas
+
+#### Vista principal
+![Vista principal](./public/cover.png)
+
+#### Modal de información
+![Modal](./public//modal.png)
+
+
+---
+
+## ✨ Funcionalidades
+
+- Búsqueda por título y categoría con filtros dinámicos
+- Renderizado de resultados en tarjetas de película
+- Modal detallado con información enriquecida del film
+- Gestión de favoritos persistente
+- Notificaciones contextuales tipo toast
+- Validación de datos con **Zod**
+- Enrutamiento dinámico con **React Router**
+- Diseño moderno responsive con **Tailwind CSS**
+
+---
+
+## 💻 Tecnologías Utilizadas
+
+- **React 18**
+- **TypeScript**
+- **Zustand** (gestión global del estado)
+- **Zod** (validación de esquemas)
+- **React Router**
+- **Headless UI** (modal y transiciones)
+- **Tailwind CSS**
+- **Vite**
+
+---
+
+## 📋 Requisitos
+
+- Node.js v18 o superior
+- Conexión a internet (API externa)
+- Git
+
+---
+
+## 🧱 Estructura del Proyecto
+
+```bash
+MovieSearch/
+├── src/
+│   ├── Components/            # Header, MovieCard, Modal, Notification
+│   ├── layouts/               # Layout base
+│   ├── views/                 # Páginas: Home, Favoritos
+│   ├── stores/                # Zustand slices y estado global
+│   ├── services/              # MovieService: lógica de consumo API
+│   ├── utils/                 # Formateo y validación (Zod)
+│   ├── types/                 # Tipos TypeScript
+│   ├── router.tsx            # Enrutamiento principal
+│   └── main.tsx              # Punto de entrada
+├── tailwind.config.js
+├── vite.config.ts
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+
+## 🛠️ Instalación
+
+```bash
+git clone https://github.com/eze-ms/Movie-DB-API-React
+```
+
+### Instalar dependencias del backend
+```bash
+npm install
+```
+
+### Iniciar servidor
+```bash
+npm run dev
+```
+---
+
+© 2024. Proyecto desarrollado por Ezequiel Macchi Seoane

@@ -59,7 +59,11 @@ export async function getMovieById(id: Movie["id"]) {
 export const getRecentMovies = async (): Promise<Movie[]> => {
   const appId = import.meta.env.VITE_API_KEY;
   const BASE_URL = "https://api.themoviedb.org/3";
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 87fd526 (new README)
   try {
     const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
       params: {
